@@ -907,6 +907,15 @@ class Fastq_sequence(DNA_sequence):
         )
 
     # ------------------------------------------------------------------
+    def read_alignment(self, silently_discard_dup_name=False):
+        raise SeqError("FASTQ files cannot be read as alignments")
+
+    # ------------------------------------------------------------------
+    def copy_seqobject(self):
+        return Fastq_sequence(self.name, self.seq, self.qual_string,
+                              self.annotation, self.comments)
+
+    # ------------------------------------------------------------------
     def __str__(self):
         """String representation uses FASTQ format (not FASTA)."""
         return self.fastq()
